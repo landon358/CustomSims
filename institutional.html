@@ -19,7 +19,7 @@
   a:hover { color: #E6C878; }
   input, select, textarea, button { font-family: inherit; }
   ::selection { background: #C9A227; color: #040404; }
-  [data-dd]:hover [data-dd-menu] { opacity: 1; visibility: visible; transform: translateY(0); }
+  [data-dd]:hover [data-dd-menu], [data-dd]:focus-within [data-dd-menu] { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; }
   summary::-webkit-details-marker { display: none; }
   summary::marker { content: ""; }
   img, video { max-width: 100%; }
