@@ -20,19 +20,81 @@
   input, select, textarea, button { font-family: inherit; }
   ::selection { background: #C9A227; color: #040404; }
   [data-dd]:hover [data-dd-menu] { opacity: 1; visibility: visible; transform: translateY(0); }
-  @media (max-width: 1080px) { [data-nav-links] { display: none !important; } }
+  summary::-webkit-details-marker { display: none; }
+  summary::marker { content: ""; }
+  img, video { max-width: 100%; }
+  h1, h2, h3, p, blockquote, a { overflow-wrap: break-word; }
+  [data-fcol][open] [data-fchev] { transform: rotate(180deg); }
+  [data-navmenu][open] [data-burger-top] { transform: translateY(7px) rotate(45deg); }
+  [data-navmenu][open] [data-burger-mid] { opacity: 0; }
+  [data-navmenu][open] [data-burger-bot] { transform: translateY(-7px) rotate(-45deg); }
+  @media (max-width: 1080px) {
+    [data-nav-links] { display: none !important; }
+    [data-navmenu] { display: block !important; }
+  }
+  @media (max-width: 760px) {
+    [data-hdr] { padding: 12px 16px !important; gap: 10px !important; }
+    [data-logo-mark] { height: 46px !important; width: 46px !important; }
+    [data-logo-word] { height: 24px !important; width: 97px !important; }
+    [data-logo-tag] { font-size: 7.5px !important; letter-spacing: .14em !important; gap: 2px !important; }
+    [data-cta] { padding: 11px 14px !important; font-size: 10px !important; letter-spacing: .1em !important; }
+    [data-fgrid] { gap: 0 !important; }
+    [data-fcol] { border-top: 1px solid rgba(242,237,228,.1); }
+    [data-fcol] > summary { padding: 18px 0; }
+    [data-fchev] { display: block !important; }
+    [data-flogo] { margin-bottom: 26px; }
+    [data-flogo] [data-flogo-mark] { width: 84px !important; height: 85px !important; }
+    [data-flogo] [data-flogo-word] { width: 150px !important; height: 33px !important; }
+  }
   @media (max-width: 460px) { [data-nav-phone] { display: none !important; } }
+  @media (min-width: 761px) { [data-fcol] > summary { cursor: default; } }
 </style>
+<script>
+(function () {
+  var MOB = 760;
+  function syncFooter(force) {
+    var mob = window.innerWidth <= MOB;
+    var list = document.querySelectorAll('[data-fcol]');
+    for (var i = 0; i < list.length; i++) {
+      var d = list[i];
+      if (!force && d.getAttribute('data-synced') === String(mob)) continue;
+      d.setAttribute('data-synced', String(mob));
+      if (mob) { d.removeAttribute('open'); } else { d.setAttribute('open', ''); }
+    }
+  }
+  function boot() {
+    syncFooter(true);
+    if (window.MutationObserver) {
+      new MutationObserver(function () { syncFooter(false); }).observe(document.body, { childList: true, subtree: true });
+    }
+    window.addEventListener('resize', function () { syncFooter(true); });
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      if (!t || !t.closest) return;
+      var menu = document.querySelector('[data-navmenu][open]');
+      if (!menu) return;
+      if (t.closest('[data-navpanel] a') || !t.closest('[data-navmenu]')) menu.removeAttribute('open');
+    });
+  }
+  if (document.body) boot(); else document.addEventListener('DOMContentLoaded', boot);
+  var tries = 0;
+  var poll = setInterval(function () {
+    tries++;
+    syncFooter(false);
+    if (tries > 40 || document.querySelectorAll('[data-fcol][data-synced]').length >= 3) clearInterval(poll);
+  }, 200);
+})();
+</script>
 </helmet>
 
 <div style="background:#040404; overflow-x:hidden">
 
-  <header style="position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:20px clamp(20px,4vw,56px); background:transparent">
+  <header data-hdr="" style="position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:20px clamp(20px,4vw,56px); background:transparent">
     <a href="index.html" style="display:flex; align-items:center; gap:14px; flex:0 0 auto; color:#F2EDE4">
-      <img src="assets/logo_mark.png" alt="Custom Sims LLC" style="height:64px; width:64px; flex:0 0 auto; object-fit:contain; display:block">
+      <img data-logo-mark="" src="assets/logo_mark.png" alt="Custom Sims LLC" style="height:64px; width:64px; flex:0 0 auto; object-fit:contain; display:block">
       <span style="display:flex; flex-direction:column; gap:5px">
-        <img src="assets/wordmark.png" alt="Custom Sims" style="height: 33px; width: 133px; flex: 0 0 auto; object-fit: contain; display: block">
-        <span style="display:flex; flex-direction:column; gap:3px; font-size:9px; font-weight:600; letter-spacing:.2em; line-height:1.1; text-transform:uppercase; color:#8A6A32">
+        <img data-logo-word="" src="assets/wordmark.png" alt="Custom Sims" style="height: 33px; width: 133px; flex: 0 0 auto; object-fit: contain; display: block">
+        <span data-logo-tag="" style="display:flex; flex-direction:column; gap:3px; font-size:9px; font-weight:600; letter-spacing:.2em; line-height:1.1; text-transform:uppercase; color:#8A6A32">
           <span>Golf Simulator Design</span>
           <span>&amp; Installation</span>
         </span>
@@ -57,7 +119,27 @@
       <a href="process-faq.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">FAQ</a>
       </span>
       <a data-nav-phone="" href="tel:+19897141364" style="color:#F2EDE4; font-variant-numeric:tabular-nums; letter-spacing:.08em; font-size:12px">(989) 714-1364</a>
-      <a href="contact.html" style="padding:11px 20px; background:#C9A227; color:#040404; font-weight:700; letter-spacing:.14em" style-hover="background:#E6C878; color:#040404">Free quote</a>
+      <a data-cta="" href="contact.html" style="padding:11px 20px; background:#C9A227; color:#040404; font-weight:700; letter-spacing:.14em" style-hover="background:#E6C878; color:#040404">Free quote</a>
+      <details data-navmenu="" style="display:none; position:relative; flex:0 0 auto">
+        <summary aria-label="Menu" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; width:44px; height:44px; cursor:pointer; list-style:none">
+          <span data-burger-top="" style="display:block; width:22px; height:2px; background:#F2EDE4; transition:transform .2s ease"></span>
+          <span data-burger-mid="" style="display:block; width:22px; height:2px; background:#F2EDE4; transition:opacity .2s ease"></span>
+          <span data-burger-bot="" style="display:block; width:22px; height:2px; background:#F2EDE4; transition:transform .2s ease"></span>
+        </summary>
+        <div data-navpanel="" style="position:absolute; top:calc(100% + 12px); right:0; display:flex; flex-direction:column; width:min(80vw,300px); max-height:72svh; overflow-y:auto; background:#0B0B0B; border:1px solid rgba(242,237,228,.14); box-shadow:0 26px 60px rgba(0,0,0,.66)">
+            <a href="index.html" style="padding:16px 20px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Home</a>
+          <span style="padding:18px 20px 8px; font-size:9px; font-weight:700; letter-spacing:.26em; text-transform:uppercase; color:#8A6A32">Services</span>
+            <a href="residential.html" style="padding:14px 20px 14px 32px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Residential</a>
+            <a href="commercial.html" style="padding:14px 20px 14px 32px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Commercial</a>
+            <a href="institutional.html" style="padding:14px 20px 14px 32px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Institutional</a>
+            <a href="putting-greens.html" style="padding:14px 20px 14px 32px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Putting Greens</a>
+            <a href="projects.html" style="padding:16px 20px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Projects</a>
+            <a href="about.html" style="padding:16px 20px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">About</a>
+            <a href="process-faq.html" style="padding:16px 20px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Process &amp; FAQ</a>
+          <a href="tel:+19897141364" style="padding:16px 20px; color:#F2EDE4; font-size:13px; letter-spacing:.1em; font-variant-numeric:tabular-nums; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="background:#141414">(989) 714-1364</a>
+          <a href="contact.html" style="margin:14px 20px 20px; padding:15px 18px; background:#C9A227; color:#040404; font-weight:700; letter-spacing:.14em; text-align:center" style-hover="background:#E6C878; color:#040404">Free quote</a>
+        </div>
+      </details>
     </nav>
   </header>
 
@@ -92,7 +174,7 @@
       <h2 style="margin:0; font-size:clamp(30px,4.4vw,60px); line-height:1.02; font-weight:800; letter-spacing:-.025em; max-width:22ch">Where are we building?</h2>
       <p style="margin:0; max-width:38ch; font-size:16px; line-height:1.65; color:#9CA0A6; text-wrap:pretty">Three kinds of rooms, three kinds of buyers. The build is custom either way.</p>
     </div>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(16px,2vw,28px)">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:clamp(16px,2vw,28px)">
       <a href="residential.html" data-reveal="" style="display:flex; flex-direction:column; color:#F2EDE4">
         <div style="aspect-ratio:4/5; background-image:url('assets/barnwood_pc.jpg'); background-size:cover; background-position:center"></div>
         <div style="padding-top:24px; border-top:1px solid #8A6A32; margin-top:24px">
@@ -121,7 +203,7 @@
   </section>
 
   <section data-screen-label="Process" style="background:#0B0B0B; border-top:1px solid rgba(242,237,228,.07)">
-    <div style="max-width:1240px; margin:0 auto; padding:clamp(80px,10vw,150px) clamp(20px,4vw,56px); display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:clamp(40px,6vw,88px); align-items:start">
+    <div style="max-width:1240px; margin:0 auto; padding:clamp(80px,10vw,150px) clamp(20px,4vw,56px); display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr)); gap:clamp(40px,6vw,88px); align-items:start">
       <div data-reveal="">
       <span style="font-size:11px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:#8A6A32">The process</span>
       <h2 style="margin:22px 0 0; font-size:clamp(28px,3.9vw,52px); line-height:1.03; font-weight:800; letter-spacing:-.025em; max-width:24ch">No such thing as guesswork.</h2>
@@ -154,7 +236,7 @@
     </div>
   </section>
 
-  <section data-screen-label="Details matter" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); background:#0B0B0B; border-top:1px solid rgba(242,237,228,.07)">
+  <section data-screen-label="Details matter" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr)); background:#0B0B0B; border-top:1px solid rgba(242,237,228,.07)">
     <div style="min-height:clamp(300px,42vw,600px); background-image:url('assets/panel_install.jpg'); background-size:cover; background-position:center"></div>
     <div data-reveal="" style="display:flex; flex-direction:column; justify-content:center; padding:clamp(48px,6vw,96px) clamp(20px,4vw,72px)">
       <span style="font-size:11px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:#8A6A32">Why matte black</span>
@@ -184,7 +266,7 @@
   </section>
 
   <section data-screen-label="Testimonials" style="border-top:1px solid rgba(242,237,228,.07)">
-    <div style="max-width:1240px; margin:0 auto; padding:clamp(72px,9vw,130px) clamp(20px,4vw,56px); display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:clamp(32px,5vw,72px)">
+    <div style="max-width:1240px; margin:0 auto; padding:clamp(72px,9vw,130px) clamp(20px,4vw,56px); display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr)); gap:clamp(32px,5vw,72px)">
       <blockquote data-reveal="" style="margin:0; padding-top:28px; border-top:1px solid #8A6A32">
         <p style="margin:0; font-size:clamp(20px,2.2vw,28px); line-height:1.4; font-weight:500; letter-spacing:-.015em; text-wrap:pretty">“Randy is the best installer. We have one at home and one at Timbers he installed. It’s not just a job for him, it is his passion.”</p>
         <footer style="margin-top:22px; font-size:12px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#9CA0A6">Timbers Golf Club — Vassar, MI</footer>
@@ -196,7 +278,7 @@
     </div>
   </section>
 
-  <section data-screen-label="Randy" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); background:#040404; border-top:1px solid rgba(242,237,228,.07)">
+  <section data-screen-label="Randy" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr)); background:#040404; border-top:1px solid rgba(242,237,228,.07)">
     <div data-reveal="" style="display:flex; flex-direction:column; justify-content:center; padding:clamp(48px,6vw,96px) clamp(20px,4vw,72px)">
       <span style="font-size:11px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:#8A6A32">Randy Norris · Owner &amp; designer</span>
       <h2 style="margin:22px 0 0; font-size:clamp(28px,3.9vw,52px); line-height:1.03; font-weight:800; letter-spacing:-.025em; max-width:24ch">Built by a golfer.</h2>
@@ -231,39 +313,39 @@
   </section>
 
   <footer style="border-top:1px solid rgba(242,237,228,.09)">
-    <div style="max-width:1240px; margin:0 auto; padding:clamp(48px,6vw,88px) clamp(20px,4vw,56px); display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:40px; align-items:start">
-      <div style="display:flex; flex-direction:column; gap:16px; align-items:flex-start"><img src="assets/logo_mark.png" alt="Custom Sims LLC" style="width:118px; height:119px; object-fit:contain; display:block"><img src="assets/wordmark.png" alt="Custom Sims" style="width:190px; height:42px; object-fit:contain; display:block"></div>
-      <div>
-        <div style="font-size:10px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32">Builds</div>
-        <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px; font-size:15px">
+    <div data-fgrid="" style="max-width:1240px; margin:0 auto; padding:clamp(40px,6vw,88px) clamp(20px,4vw,56px); display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr)); gap:40px; align-items:start">
+      <div data-flogo="" style="display:flex; flex-direction:column; gap:16px; align-items:flex-start"><img data-flogo-mark="" src="assets/logo_mark.png" alt="Custom Sims LLC" style="width:118px; height:119px; object-fit:contain; display:block"><img data-flogo-word="" src="assets/wordmark.png" alt="Custom Sims" style="width:190px; height:42px; object-fit:contain; display:block"></div>
+      <details data-fcol="" open="{{ true }}">
+        <summary style="display:flex; align-items:center; justify-content:space-between; gap:12px; list-style:none; cursor:pointer; font-size:10px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32">Builds<span data-fchev="" style="display:none; font-size:8px; line-height:1; color:#8A6A32; transition:transform .2s ease">&#9660;</span></summary>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px; margin-bottom:22px; font-size:15px">
           <a href="residential.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Residential</a>
           <a href="commercial.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Commercial</a>
           <a href="institutional.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Institutional</a>
           <a href="putting-greens.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Putting greens</a>
         </div>
-      </div>
-      <div>
-        <div style="font-size:10px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32">Company</div>
-        <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px; font-size:15px">
+      </details>
+      <details data-fcol="" open="{{ true }}">
+        <summary style="display:flex; align-items:center; justify-content:space-between; gap:12px; list-style:none; cursor:pointer; font-size:10px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32">Company<span data-fchev="" style="display:none; font-size:8px; line-height:1; color:#8A6A32; transition:transform .2s ease">&#9660;</span></summary>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px; margin-bottom:22px; font-size:15px">
           <a href="projects.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Projects</a>
           <a href="about.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">About Randy</a>
           <a href="process-faq.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Process &amp; FAQ</a>
           <a href="https://www.facebook.com/p/Custom-Sims-LLC-61578348137090/" target="_blank" rel="noreferrer" style="color:#9CA0A6" style-hover="color:#F2EDE4">Facebook</a>
         </div>
-      </div>
-      <div>
-        <div style="font-size:10px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32">Contact</div>
-        <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px; font-size:15px">
+      </details>
+      <details data-fcol="" open="{{ true }}">
+        <summary style="display:flex; align-items:center; justify-content:space-between; gap:12px; list-style:none; cursor:pointer; font-size:10px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32">Contact<span data-fchev="" style="display:none; font-size:8px; line-height:1; color:#8A6A32; transition:transform .2s ease">&#9660;</span></summary>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px; margin-bottom:22px; font-size:15px">
           <a href="tel:+19897141364" style="color:#F2EDE4; font-variant-numeric:tabular-nums">(989) 714-1364</a>
-          <a href="mailto:customsimsllc@gmail.com" style="color:#9CA0A6" style-hover="color:#F2EDE4">customsimsllc@gmail.com</a>
+          <a href="mailto:customsimsllc@gmail.com" style="color:#9CA0A6; overflow-wrap:anywhere" style-hover="color:#F2EDE4">customsimsllc@gmail.com</a>
           <span style="color:#9CA0A6">Lapeer, Michigan</span>
-          <span style="color:#5F6367; font-size:14px; line-height:1.5">Michigan · northern Indiana, Illinois &amp; Ohio</span>
+          <span style="color:#5F6367; font-size:14px; line-height:1.5">Michigan &middot; northern Indiana, Illinois &amp; Ohio</span>
         </div>
-      </div>
+      </details>
     </div>
     <div style="border-top:1px solid rgba(242,237,228,.07)">
       <div style="max-width:1240px; margin:0 auto; padding:22px clamp(20px,4vw,56px); display:flex; flex-wrap:wrap; gap:12px 32px; justify-content:space-between; font-size:12px; color:#5F6367; letter-spacing:.06em">
-        <span>© 2026 Custom Sims LLC. All rights reserved.</span><span>Precision. Performance. Perfection.</span>
+        <span>&copy; 2026 Custom Sims LLC. All rights reserved.</span><span>Precision. Performance. Perfection.</span>
       </div>
     </div>
   </footer>
