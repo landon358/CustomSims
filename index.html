@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800&amp;display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #040404; color: #F2EDE4; font-family: Archivo, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #C9A227; text-decoration: none; }
+  a:hover { color: #E6C878; }
+  input, select, textarea, button { font-family: inherit; }
+  ::selection { background: #C9A227; color: #040404; }
+  [data-dd]:hover [data-dd-menu] { opacity: 1; visibility: visible; transform: translateY(0); }
+  @media (max-width: 1080px) { [data-nav-links] { display: none !important; } }
+  @media (max-width: 460px) { [data-nav-phone] { display: none !important; } }
+</style>
+</helmet>
+
+<div style="background:#040404; overflow-x:hidden">
+
+  <header style="position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:20px clamp(20px,4vw,56px); background:transparent">
+    <a href="index.html" style="display:flex; align-items:center; gap:14px; flex:0 0 auto; color:#F2EDE4">
+      <img src="assets/logo_mark.png" alt="Custom Sims LLC" style="height:64px; width:64px; flex:0 0 auto; object-fit:contain; display:block">
+      <span style="display:flex; flex-direction:column; gap:5px">
+        <img src="assets/wordmark.png" alt="Custom Sims" style="height: 33px; width: 133px; flex: 0 0 auto; object-fit: contain; display: block">
+        <span style="display:flex; flex-direction:column; gap:3px; font-size:9px; font-weight:600; letter-spacing:.2em; line-height:1.1; text-transform:uppercase; color:#8A6A32">
+          <span>Golf Simulator Design</span>
+          <span>&amp; Installation</span>
+        </span>
+      </span>
+    </a>
+    <nav style="display:flex; align-items:center; gap:clamp(12px,1.6vw,26px); font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; white-space:nowrap">
+      <span data-nav-links="" style="display:flex; align-items:center; gap:clamp(12px,1.6vw,26px)">
+      <a href="index.html" style="color:#E6C878" style-hover="color:#F2EDE4">Home</a>
+      <span data-dd="" style="position:relative; display:flex; align-items:center">
+        <span style="display:flex; align-items:center; gap:6px; color:#9CA0A6; cursor:default" style-hover="color:#F2EDE4">Services<span style="font-size:8px; line-height:1">▼</span></span>
+        <span data-dd-menu="" style="position:absolute; top:100%; left:-18px; padding-top:18px; opacity:0; visibility:hidden; transform:translateY(-6px); transition:opacity .18s ease, transform .18s ease, visibility .18s">
+          <span style="display:flex; flex-direction:column; min-width:210px; background:#0B0B0B; border:1px solid rgba(242,237,228,.12)">
+            <a href="residential.html" style="padding:14px 18px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Residential</a>
+            <a href="commercial.html" style="padding:14px 18px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Commercial</a>
+            <a href="institutional.html" style="padding:14px 18px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Institutional</a>
+            <a href="putting-greens.html" style="padding:14px 18px; color:#9CA0A6" style-hover="color:#F2EDE4; background:#141414">Putting Greens</a>
+          </span>
+        </span>
+      </span>
+      <a href="projects.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Projects</a>
+      <a href="about.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">About</a>
+      <a href="process-faq.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">FAQ</a>
+      </span>
+      <a data-nav-phone="" href="tel:+19897141364" style="color:#F2EDE4; font-variant-numeric:tabular-nums; letter-spacing:.08em; font-size:12px">(989) 714-1364</a>
+      <a href="contact.html" style="padding:11px 20px; background:#C9A227; color:#040404; font-weight:700; letter-spacing:.14em" style-hover="background:#E6C878; color:#040404">Free quote</a>
+    </nav>
+  </header>
+
+  <section data-screen-label="Hero" style="position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:flex-end; padding:150px clamp(20px,4vw,56px) clamp(40px,5vw,72px)">
+    <video autoplay="{{ true }}" muted="{{ true }}" playsinline="{{ true }}" preload="auto" poster="assets/hero_fallback.jpg" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center">
+      <source src="assets/hero_bg.webm" type="video/webm">
+      <source src="assets/hero_bg.mp4" type="video/mp4">
+    </video>
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(4,4,4,.88) 0%, rgba(4,4,4,.34) 32%, rgba(4,4,4,.76) 74%, #040404 100%)"></div>
+    <div style="position:relative; max-width:1240px; width:100%; margin:0 auto">
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:24px">
+        <span style="width:36px; height:1px; background:#C9A227"></span>
+        <span style="font-size:11px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:#E6C878">Lapeer, Michigan · Design &amp; Installation</span>
+      </div>
+      <h1 style="margin:0; font-size:clamp(40px,7.4vw,104px); line-height:.98; font-weight:800; letter-spacing:-.03em; max-width:16ch; text-wrap:balance">Golf, year‑round, in a room built for it.</h1>
+      <p style="margin:26px 0 0; font-size:clamp(16px,1.3vw,19px); line-height:1.6; color:#C9C4BC; max-width:60ch; text-wrap:pretty">Custom Sims LLC designs and builds fully custom indoor golf simulators for homes, clubs, and facilities across Michigan. Custom-built enclosures. Tour-quality turf. Pro-grade impact screens. Built to perform.</p>
+      <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:36px">
+        <a href="contact.html" style="padding:17px 32px; background:#C9A227; color:#040404; font-size:13px; font-weight:700; letter-spacing:.16em; text-transform:uppercase" style-hover="background:#E6C878; color:#040404">Get a free quote</a>
+        <a href="projects.html" style="padding:17px 32px; border:1px solid rgba(242,237,228,.28); color:#F2EDE4; font-size:13px; font-weight:700; letter-spacing:.16em; text-transform:uppercase" style-hover="border-color:#C9A227; color:#E6C878">See the builds</a>
+      </div>
+    </div>
+  </section>
+
+  <div style="border-top:1px solid rgba(242,237,228,.09); border-bottom:1px solid rgba(242,237,228,.09)">
+    <div style="max-width:1240px; margin:0 auto; padding:22px clamp(20px,4vw,56px); display:flex; flex-wrap:wrap; gap:10px 40px; font-size:12px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#9CA0A6">
+      <span>Michigan-based.</span><span>Professional.</span><span>Reliable.</span><span>Fully custom.</span>
+    </div>
+  </div>
+
+  <section data-screen-label="Segments" style="max-width:1240px; margin:0 auto; padding:clamp(80px,10vw,150px) clamp(20px,4vw,56px)">
+    <div data-reveal="" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:clamp(36px,4vw,64px)">
+      <h2 style="margin:0; font-size:clamp(30px,4.4vw,60px); line-height:1.02; font-weight:800; letter-spacing:-.025em; max-width:22ch">Where are we building?</h2>
+      <p style="margin:0; max-width:38ch; font-size:16px; line-height:1.65; color:#9CA0A6; text-wrap:pretty">Three kinds of rooms, three kinds of buyers. The build is custom either way.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(16px,2vw,28px)">
+      <a href="residential.html" data-reveal="" style="display:flex; flex-direction:column; color:#F2EDE4">
+        <div style="aspect-ratio:4/5; background-image:url('assets/barnwood_pc.jpg'); background-size:cover; background-position:center"></div>
+        <div style="padding-top:24px; border-top:1px solid #8A6A32; margin-top:24px">
+          <h3 style="margin:0 0 12px; font-size:22px; font-weight:700; letter-spacing:-.01em">Residential</h3>
+          <p style="margin:0 0 16px; font-size:15px; line-height:1.65; color:#9CA0A6; text-wrap:pretty">Basements, garages, pole barns, and dedicated golf rooms. Your space, designed around your swing.</p>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#C9A227">See residential →</span>
+        </div>
+      </a>
+      <a href="commercial.html" data-reveal="" style="display:flex; flex-direction:column; color:#F2EDE4">
+        <div style="aspect-ratio:4/5; background-image:url('assets/commercial_two_bay.jpg'); background-size:cover; background-position:center"></div>
+        <div style="padding-top:24px; border-top:1px solid #8A6A32; margin-top:24px">
+          <h3 style="margin:0 0 12px; font-size:22px; font-weight:700; letter-spacing:-.01em">Commercial</h3>
+          <p style="margin:0 0 16px; font-size:15px; line-height:1.65; color:#9CA0A6; text-wrap:pretty">Golf clubs, indoor facilities, and venues. Multi-bay builds that hold up to daily traffic.</p>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#C9A227">See commercial →</span>
+        </div>
+      </a>
+      <a href="institutional.html" data-reveal="" style="display:flex; flex-direction:column; color:#F2EDE4">
+        <div style="aspect-ratio:4/5; background-image:url('assets/modern_white_room.jpg'); background-size:cover; background-position:center"></div>
+        <div style="padding-top:24px; border-top:1px solid #8A6A32; margin-top:24px">
+          <h3 style="margin:0 0 12px; font-size:22px; font-weight:700; letter-spacing:-.01em">Institutional</h3>
+          <p style="margin:0 0 16px; font-size:15px; line-height:1.65; color:#9CA0A6; text-wrap:pretty">Schools, teams, and training programs. Practice space that works in February.</p>
+          <span style="font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#C9A227">See institutional →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section data-screen-label="Process" style="background:#0B0B0B; border-top:1px solid rgba(242,237,228,.07)">
+    <div style="max-width:1240px; margin:0 auto; padding:clamp(80px,10vw,150px) clamp(20px,4vw,56px); display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:clamp(40px,6vw,88px); align-items:start">
+      <div data-reveal="">
+      <span style="font-size:11px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:#8A6A32">The process</span>
+      <h2 style="margin:22px 0 0; font-size:clamp(28px,3.9vw,52px); line-height:1.03; font-weight:800; letter-spacing:-.025em; max-width:24ch">No such thing as guesswork.</h2>
+      <p style="margin:20px 0 0; font-size:17px; line-height:1.65; color:#C9C4BC; max-width:54ch; text-wrap:pretty">Every build starts with the room you actually have. We measure it, plan it, and tell you honestly what is possible before anyone buys anything.</p>
+        <div style="margin-top:34px; aspect-ratio:4/3; background-image:url('assets/framing_progress.jpg'); background-size:cover; background-position:center 30%"></div>
+        <a href="process-faq.html" style="display:inline-block; margin-top:28px; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase">Process &amp; FAQ →</a>
+      </div>
+      <ol data-reveal="" style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column">
+        <li style="display:grid; grid-template-columns:64px 1fr; gap:20px; padding:26px 0; border-top:1px solid rgba(242,237,228,.1)">
+          <span style="font-size:30px; font-weight:700; color:#C9A227; font-variant-numeric:tabular-nums; line-height:1">01</span>
+          <div><h3 style="margin:0 0 8px; font-size:19px; font-weight:700">Consult.</h3><p style="margin:0; font-size:15px; line-height:1.65; color:#9CA0A6">Free. We talk through the space, the budget, and how you actually want to use it.</p></div>
+        </li>
+        <li style="display:grid; grid-template-columns:64px 1fr; gap:20px; padding:26px 0; border-top:1px solid rgba(242,237,228,.1)">
+          <span style="font-size:30px; font-weight:700; color:#C9A227; font-variant-numeric:tabular-nums; line-height:1">02</span>
+          <div><h3 style="margin:0 0 8px; font-size:19px; font-weight:700">Design.</h3><p style="margin:0; font-size:15px; line-height:1.65; color:#9CA0A6">Layout, dimensions, sightlines, equipment. You see the plan before we build it.</p></div>
+        </li>
+        <li style="display:grid; grid-template-columns:64px 1fr; gap:20px; padding:26px 0; border-top:1px solid rgba(242,237,228,.1)">
+          <span style="font-size:30px; font-weight:700; color:#C9A227; font-variant-numeric:tabular-nums; line-height:1">03</span>
+          <div><h3 style="margin:0 0 8px; font-size:19px; font-weight:700">Build.</h3><p style="margin:0; font-size:15px; line-height:1.65; color:#9CA0A6">Framing, enclosure, acoustics, lighting, turf, screen. Done on site by us.</p></div>
+        </li>
+        <li style="display:grid; grid-template-columns:64px 1fr; gap:20px; padding:26px 0; border-top:1px solid rgba(242,237,228,.1)">
+          <span style="font-size:30px; font-weight:700; color:#C9A227; font-variant-numeric:tabular-nums; line-height:1">04</span>
+          <div><h3 style="margin:0 0 8px; font-size:19px; font-weight:700">Dial it in.</h3><p style="margin:0; font-size:15px; line-height:1.65; color:#9CA0A6">Launch monitor calibrated, projector aligned, software and courses set up.</p></div>
+        </li>
+        <li style="display:grid; grid-template-columns:64px 1fr; gap:20px; padding:26px 0; border-top:1px solid rgba(242,237,228,.1); border-bottom:1px solid rgba(242,237,228,.1)">
+          <span style="font-size:30px; font-weight:700; color:#C9A227; font-variant-numeric:tabular-nums; line-height:1">05</span>
+          <div><h3 style="margin:0 0 8px; font-size:19px; font-weight:700">Play.</h3><p style="margin:0; font-size:15px; line-height:1.65; color:#9CA0A6">Once completed, you get to go golfing!</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-screen-label="Details matter" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); background:#0B0B0B; border-top:1px solid rgba(242,237,228,.07)">
+    <div style="min-height:clamp(300px,42vw,600px); background-image:url('assets/panel_install.jpg'); background-size:cover; background-position:center"></div>
+    <div data-reveal="" style="display:flex; flex-direction:column; justify-content:center; padding:clamp(48px,6vw,96px) clamp(20px,4vw,72px)">
+      <span style="font-size:11px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:#8A6A32">Why matte black</span>
+      <h2 style="margin:22px 0 0; font-size:clamp(28px,3.9vw,52px); line-height:1.03; font-weight:800; letter-spacing:-.025em; max-width:24ch">Details matter.</h2>
+      <p style="margin:20px 0 0; font-size:17px; line-height:1.65; color:#C9C4BC; max-width:54ch; text-wrap:pretty">We paint every enclosure matte black for a reason. Any light that bleeds through the impact screen gets absorbed, not bounced around the room. More contrast. Cleaner image. Premium finish.</p>
+      <p style="margin:20px 0 0; font-size:17px; line-height:1.65; color:#9CA0A6; max-width:54ch; text-wrap:pretty">That is one decision out of a few hundred we make on every build. You will never see most of them. You will see the result.</p>
+    </div>
+  </section>
+
+  <section data-screen-label="Featured project" style="position:relative">
+    <div style="min-height:clamp(420px,62vw,760px); position:relative; display:flex; align-items:flex-end">
+      <div style="position:absolute; inset:0; background-image:url('assets/commercial_two_bay.jpg'); background-size:cover; background-position:center"></div>
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(4,4,4,.55) 0%, rgba(4,4,4,.1) 30%, rgba(4,4,4,.92) 100%)"></div>
+      <div data-reveal="" style="position:relative; max-width:1240px; width:100%; margin:0 auto; padding:clamp(40px,5vw,80px) clamp(20px,4vw,56px)">
+        <span style="font-size:11px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:#E6C878">Featured build · Commercial</span>
+        <h2 style="margin:20px 0 0; font-size:clamp(30px,4.6vw,64px); line-height:1.02; font-weight:800; letter-spacing:-.03em; max-width:20ch">Timbers Golf Club, Vassar, Michigan</h2>
+        <div style="display:flex; flex-wrap:wrap; gap:16px 56px; margin-top:34px">
+          <div><div style="font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32; font-weight:700">Installed</div><div style="margin-top:8px; font-size:19px; font-weight:600; font-variant-numeric:tabular-nums">Dec 2025</div></div>
+          <div><div style="font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32; font-weight:700">Opened</div><div style="margin-top:8px; font-size:19px; font-weight:600; font-variant-numeric:tabular-nums">Feb 2026</div></div>
+          <div><div style="font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32; font-weight:700">Bays</div><div style="margin-top:8px; font-size:19px; font-weight:600; font-variant-numeric:tabular-nums">Two</div></div>
+          <div><div style="font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32; font-weight:700">Open to</div><div style="margin-top:8px; font-size:19px; font-weight:600; font-variant-numeric:tabular-nums">Members &amp; public</div></div>
+        </div>
+        <p style="margin:34px 0 0; font-size:17px; line-height:1.65; color:#C9C4BC; max-width:56ch; text-wrap:pretty">We loaded the trailer and started the install in December. They opened in February. Off-season is when a club has the room and needs the revenue, and that is exactly when we work.</p>
+        <a href="projects.html" style="display:inline-block; margin-top:28px; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase">See all projects →</a>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Testimonials" style="border-top:1px solid rgba(242,237,228,.07)">
+    <div style="max-width:1240px; margin:0 auto; padding:clamp(72px,9vw,130px) clamp(20px,4vw,56px); display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:clamp(32px,5vw,72px)">
+      <blockquote data-reveal="" style="margin:0; padding-top:28px; border-top:1px solid #8A6A32">
+        <p style="margin:0; font-size:clamp(20px,2.2vw,28px); line-height:1.4; font-weight:500; letter-spacing:-.015em; text-wrap:pretty">“Randy is the best installer. We have one at home and one at Timbers he installed. It’s not just a job for him, it is his passion.”</p>
+        <footer style="margin-top:22px; font-size:12px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#9CA0A6">Timbers Golf Club — Vassar, MI</footer>
+      </blockquote>
+      <blockquote data-reveal="" style="margin:0; padding-top:28px; border-top:1px solid #8A6A32">
+        <p style="margin:0; font-size:clamp(20px,2.2vw,28px); line-height:1.4; font-weight:500; letter-spacing:-.015em; text-wrap:pretty">“Amazing sim room! You do incredible work. I use the sim room you created for me on a daily basis and people always comment how sweet it is.”</p>
+        <footer style="margin-top:22px; font-size:12px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:#9CA0A6">Mitch Johnson — Residential client</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section data-screen-label="Randy" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); background:#040404; border-top:1px solid rgba(242,237,228,.07)">
+    <div data-reveal="" style="display:flex; flex-direction:column; justify-content:center; padding:clamp(48px,6vw,96px) clamp(20px,4vw,72px)">
+      <span style="font-size:11px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:#8A6A32">Randy Norris · Owner &amp; designer</span>
+      <h2 style="margin:22px 0 0; font-size:clamp(28px,3.9vw,52px); line-height:1.03; font-weight:800; letter-spacing:-.025em; max-width:24ch">Built by a golfer.</h2>
+      <p style="margin:20px 0 0; font-size:17px; line-height:1.65; color:#C9C4BC; max-width:54ch; text-wrap:pretty">Ten-time club champion at Willow Springs, NJCAA national competitor, SC4 Athletics Hall of Fame, 2024. He runs a simulator league out of his own house in the winter.</p>
+      <p style="margin:20px 0 0; font-size:17px; line-height:1.65; color:#F2EDE4; max-width:54ch; text-wrap:pretty">Most people who install simulators learned golf second. Randy learned construction second. That is the whole difference, and you can see it in every room he builds.</p>
+      <a href="about.html" style="display:inline-block; margin-top:30px; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase">More about Randy →</a>
+    </div>
+    <div style="min-height:clamp(300px,42vw,600px); background-image:url('assets/golfer_midswing.jpg'); background-size:cover; background-position:center"></div>
+  </section>
+
+  <section data-screen-label="Precision Performance Perfection" style="border-top:1px solid rgba(242,237,228,.07); border-bottom:1px solid rgba(242,237,228,.07)">
+    <div data-reveal="" style="max-width:1240px; margin:0 auto; padding:clamp(56px,7vw,110px) clamp(20px,4vw,56px); display:flex; flex-wrap:wrap; gap:clamp(16px,4vw,64px); align-items:baseline; justify-content:center; text-align:center">
+      <span style="font-size:clamp(28px,5vw,72px); font-weight:800; letter-spacing:-.03em; color:#F2EDE4">Precision.</span>
+      <span style="font-size:clamp(28px,5vw,72px); font-weight:800; letter-spacing:-.03em; color:#C9A227">Performance.</span>
+      <span style="font-size:clamp(28px,5vw,72px); font-weight:800; letter-spacing:-.03em; color:#F2EDE4">Perfection.</span>
+    </div>
+  </section>
+
+  <section data-screen-label="CTA" style="position:relative; border-top:1px solid rgba(242,237,228,.07)">
+    <div style="position:absolute; inset:0; background-image:url('assets/jobsite_winter.jpg'); background-size:cover; background-position:center; opacity:.24"></div>
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, #040404 0%, rgba(4,4,4,.84) 45%, #040404 100%)"></div>
+    <div data-reveal="" style="position:relative; max-width:1240px; margin:0 auto; padding:clamp(72px,9vw,130px) clamp(20px,4vw,56px); display:flex; flex-wrap:wrap; gap:40px; align-items:flex-end; justify-content:space-between">
+      <div>
+        <h2 style="margin:0; font-size:clamp(30px,4.4vw,58px); line-height:1.02; font-weight:800; letter-spacing:-.03em; max-width:20ch">Let’s build the simulator you’ve always wanted.</h2>
+        <p style="margin:24px 0 0; font-size:17px; line-height:1.65; color:#C9C4BC; max-width:52ch; text-wrap:pretty">Message us anytime for a free quote or consultation. No pressure, no obligation, and an honest answer about whether your space will work.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:16px; align-items:flex-start">
+        <a href="tel:+19897141364" style="font-size:clamp(24px,3vw,38px); font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; color:#F2EDE4" style-hover="color:#E6C878">(989) 714-1364</a>
+        <a href="contact.html" style="padding:17px 32px; background:#C9A227; color:#040404; font-size:13px; font-weight:700; letter-spacing:.16em; text-transform:uppercase" style-hover="background:#E6C878; color:#040404">Get a free quote</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid rgba(242,237,228,.09)">
+    <div style="max-width:1240px; margin:0 auto; padding:clamp(48px,6vw,88px) clamp(20px,4vw,56px); display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:40px; align-items:start">
+      <div style="display:flex; flex-direction:column; gap:16px; align-items:flex-start"><img src="assets/logo_mark.png" alt="Custom Sims LLC" style="width:118px; height:119px; object-fit:contain; display:block"><img src="assets/wordmark.png" alt="Custom Sims" style="width:190px; height:42px; object-fit:contain; display:block"></div>
+      <div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32">Builds</div>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px; font-size:15px">
+          <a href="residential.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Residential</a>
+          <a href="commercial.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Commercial</a>
+          <a href="institutional.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Institutional</a>
+          <a href="putting-greens.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Putting greens</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32">Company</div>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px; font-size:15px">
+          <a href="projects.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Projects</a>
+          <a href="about.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">About Randy</a>
+          <a href="process-faq.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Process &amp; FAQ</a>
+          <a href="https://www.facebook.com/p/Custom-Sims-LLC-61578348137090/" target="_blank" rel="noreferrer" style="color:#9CA0A6" style-hover="color:#F2EDE4">Facebook</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32">Contact</div>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px; font-size:15px">
+          <a href="tel:+19897141364" style="color:#F2EDE4; font-variant-numeric:tabular-nums">(989) 714-1364</a>
+          <a href="mailto:customsimsllc@gmail.com" style="color:#9CA0A6" style-hover="color:#F2EDE4">customsimsllc@gmail.com</a>
+          <span style="color:#9CA0A6">Lapeer, Michigan</span>
+          <span style="color:#5F6367; font-size:14px; line-height:1.5">Michigan · northern Indiana, Illinois &amp; Ohio</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(242,237,228,.07)">
+      <div style="max-width:1240px; margin:0 auto; padding:22px clamp(20px,4vw,56px); display:flex; flex-wrap:wrap; gap:12px 32px; justify-content:space-between; font-size:12px; color:#5F6367; letter-spacing:.06em">
+        <span>© 2026 Custom Sims LLC. All rights reserved.</span><span>Precision. Performance. Perfection.</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { submitted: false };
+  componentDidMount() {
+    const v = document.querySelector('video[poster*="hero_fallback"]');
+    if (v) { v.muted = true; v.playsInline = true; v.loop = false; v.autoplay = true; const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+  }
+  renderVals() {
+    return {
+      showPricing: this.props.showPricing ?? true,
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      onSubmit: (e) => { e.preventDefault(); this.setState({ submitted: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
