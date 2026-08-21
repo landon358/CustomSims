@@ -1,0 +1,27 @@
+# Custom Sims LLC — static site, no build step.
+# Netlify serves the repo root exactly as it is in git.
+#
+# Netlify Forms still needs one thing done in the UI that no config file can set:
+#   Site configuration -> Forms -> Enable form detection, then trigger a deploy.
+# The contact form is detected from the hidden static fallback <form name="contact">
+# near the end of contact.html.
+
+[build]
+  publish = "."
+
+# Keep .html extensions authoritative. Netlify's pretty-URL rewriting would make
+# /about.html redirect to /about, which would not match the canonical tags and
+# internal links (both use .html). Turning it off keeps one URL per page.
+[build.processing.html]
+  pretty_urls = false
+
+# Long-cache the fingerprinted-by-content media; they change rarely and are heavy.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
