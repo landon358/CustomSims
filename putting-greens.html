@@ -28,9 +28,8 @@
 <script src="./support.js"></script>
 <script src="./vendor/gsap.min.js"></script>
 <script src="./vendor/ScrollTrigger.min.js"></script>
-<script src="./vendor/lenis.min.js"></script>
-<script>if(window.gsap&&window.ScrollTrigger&&window.Lenis&&!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches))document.documentElement.classList.add('js-motion');</script>
-<script src="./motion.js"></script>
+<script>if(window.gsap&&window.ScrollTrigger&&!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches))document.documentElement.classList.add('js-motion');</script>
+<script src="./motion.js?v=4"></script>
 </head>
 <body>
 <x-dc>
@@ -39,9 +38,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800&amp;display=swap" rel="stylesheet">
 <style>
-  html.lenis, html.lenis body { height: auto; }
-  .lenis.lenis-smooth { scroll-behavior: auto !important; }
-  .lenis.lenis-stopped { overflow: hidden; }
+  html { scroll-behavior: smooth; }
   .js-motion [data-reveal] { opacity: 0; }
   body { margin: 0; background: #040404; color: #F2EDE4; font-family: Archivo, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
   * { box-sizing: border-box; }
