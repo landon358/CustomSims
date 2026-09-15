@@ -9,11 +9,94 @@
 [build]
   publish = "."
 
-# Keep .html extensions authoritative. Netlify's pretty-URL rewriting would make
-# /about.html redirect to /about, which would not match the canonical tags and
-# internal links (both use .html). Turning it off keeps one URL per page.
+# Pretty URLs off. Netlify's default "Pretty URLs" would redirect /about to /about/,
+# which would not match the canonical tags and links (all /about, no slash). With it
+# off, Netlify still serves /about from about.html, and the rules below 301 the
+# .html forms to the clean URL. Note: a redirect rule cannot add or remove a
+# trailing slash (Netlify normalises slashes before matching, so it would loop);
+# /about/ stays reachable and is covered by the canonical tag.
 [build.processing.html]
   pretty_urls = false
+
+# One hostname for search engines: the Netlify subdomain permanently redirects to
+# the real domain. Listed first so it wins before any other rule.
+[[redirects]]
+  from = "https://customsims.netlify.app/*"
+  to = "https://customsimsgolf.com/:splat"
+  status = 301
+  force = true
+
+# Clean URLs: every page lives at one address, e.g. /about. Netlify already serves
+# /about from about.html; these rules 301 the other forms (/about.html,
+# /index.html, /index) to it, so search engines see a single URL per page.
+# force = true is required because about.html exists and would otherwise be
+# served directly instead of redirecting.
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/residential.html"
+  to = "/residential"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/commercial.html"
+  to = "/commercial"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/institutional.html"
+  to = "/institutional"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/putting-greens.html"
+  to = "/putting-greens"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects.html"
+  to = "/projects"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/shop.html"
+  to = "/shop"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about.html"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/process-faq.html"
+  to = "/process-faq"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+  force = true
 
 # Product pages: one template serves every Shopify product. /products/{handle}
 # is rewritten (status 200, URL unchanged) to product.html, which reads the

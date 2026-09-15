@@ -54,14 +54,18 @@
 
   function applyHead(p, variants) {
     var canonical = S.CONFIG.siteUrl + S.productUrl(p.handle);
-    var title = ((p.seo && p.seo.title) || p.title) + ' | Custom Sims';
+    // Shopify's SEO title if set, else the product title. Add the brand only when it
+    // still fits in the ~60 characters Google shows; never truncate what Randy wrote.
+    var base = (p.seo && p.seo.title) || p.title;
+    var title = (base + ' | Custom Sims').length <= 60 ? base + ' | Custom Sims' : base;
     var desc = (p.seo && p.seo.description) || S.plainText(p.descriptionHtml).slice(0, 160);
     var images = p.media.nodes.map(function (m) { return (m.image || m.previewImage || {}).url; }).filter(Boolean);
 
     document.title = title;
     setMeta('name', 'description', desc);
     var link = document.head.querySelector('link[rel="canonical"]');
-    if (link) link.setAttribute('href', canonical);
+    if (!link) { link = document.createElement('link'); link.setAttribute('rel', 'canonical'); document.head.appendChild(link); }
+    link.setAttribute('href', canonical);
     setMeta('property', 'og:type', 'product');
     setMeta('property', 'og:title', title);
     setMeta('property', 'og:description', desc);
@@ -357,7 +361,7 @@
       root.textContent = '';
       root.removeAttribute('aria-busy');
       if (crumb) crumb.textContent = 'Not found';
-      var back = el('p', { className: 'cs-notice__body' }, [el('a', { href: 'shop.html', text: '← Back to the shop' })]);
+      var back = el('p', { className: 'cs-notice__body' }, [el('a', { href: '/shop', text: '← Back to the shop' })]);
       root.appendChild(S.notice(title, body, back));
     }
 
