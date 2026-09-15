@@ -15,6 +15,15 @@
 [build.processing.html]
   pretty_urls = false
 
+# Product pages: one template serves every Shopify product. /products/{handle}
+# is rewritten (status 200, URL unchanged) to product.html, which reads the
+# handle from the path and loads that product from the Storefront API. New
+# products in Shopify get a working page with no deploy.
+[[redirects]]
+  from = "/products/*"
+  to = "/product.html"
+  status = 200
+
 # Long-cache the fingerprinted-by-content media; they change rarely and are heavy.
 [[headers]]
   for = "/assets/*"

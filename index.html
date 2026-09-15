@@ -125,6 +125,21 @@
   }
   @media (max-width: 460px) { [data-nav-phone] { display: none !important; } }
   @media (min-width: 761px) { [data-fcol] > summary { cursor: default; } }
+
+  /* Touch targets. Small text links get a larger tap area via an invisible
+     pseudo-element, so nothing on the page moves. Sized so neighbouring
+     targets never overlap (e.g. contact phone/email sit 18px apart).
+     Targeted with data-tap, not style-string selectors: the page renderer
+     rewrites inline styles ("font-size: 12px"), which breaks [style*=...]. */
+  [data-tap] { position: relative; }
+  [data-tap="text"]::after { content: ""; position: absolute; inset: -15px -6px; }
+  [data-tap="phone"]::after { content: ""; position: absolute; inset: -9px -6px -8px; }
+  [data-tap="email"]::after { content: ""; position: absolute; inset: -8px -6px -13px; }
+  @media (max-width: 760px) {
+    [data-cta] { min-height: 44px; display: inline-flex !important; align-items: center; }
+    [data-fcol] > div { gap: 0 !important; }
+    [data-fcol] > div > a { padding: 14px 0; }
+  }
 </style>
 <script>
 (function () {
@@ -192,6 +207,7 @@
         </span>
       </span>
       <a href="projects.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Projects</a>
+      <a href="shop.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Shop</a>
       <a href="about.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">About</a>
       <a href="process-faq.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">FAQ</a>
       </span>
@@ -211,6 +227,7 @@
             <a href="institutional.html" style="padding:14px 20px 14px 32px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Institutional</a>
             <a href="putting-greens.html" style="padding:14px 20px 14px 32px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Putting Greens</a>
             <a href="projects.html" style="padding:16px 20px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Projects</a>
+            <a href="shop.html" style="padding:16px 20px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Shop</a>
             <a href="about.html" style="padding:16px 20px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">About</a>
             <a href="process-faq.html" style="padding:16px 20px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Process &amp; FAQ</a>
           <a href="tel:+19897141364" style="padding:16px 20px; color:#F2EDE4; font-size:13px; letter-spacing:.1em; font-variant-numeric:tabular-nums; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="background:#141414">(989) 714-1364</a>
@@ -293,7 +310,7 @@
       <h2 style="margin:22px 0 0; font-size:clamp(28px,3.9vw,52px); line-height:1.03; font-weight:800; letter-spacing:-.025em; max-width:24ch">No such thing as guesswork.</h2>
       <p style="margin:20px 0 0; font-size:17px; line-height:1.65; color:#C9C4BC; max-width:54ch; text-wrap:pretty">Every build starts with the room you actually have. We measure it, plan it, and tell you honestly what is possible before anyone buys anything.</p>
         <img src="assets/framing_progress.jpg" alt="Pole barn mid-build, stud framing and insulation before simulator install" width="1536" height="2048" loading="lazy" decoding="async" style="margin-top:34px; aspect-ratio:4/3; width:100%; height:100%; display:block; object-fit:cover; object-position:center 30%">
-        <a href="process-faq.html" style="display:inline-block; margin-top:28px; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase">Process &amp; FAQ →</a>
+        <a data-tap="text" href="process-faq.html" style="display:inline-block; margin-top:28px; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase">Process &amp; FAQ →</a>
       </div>
       <ol data-reveal="" style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column">
         <li style="display:grid; grid-template-columns:64px 1fr; gap:20px; padding:26px 0; border-top:1px solid rgba(242,237,228,.1)">
@@ -344,7 +361,7 @@
           <div><div style="font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32; font-weight:700">Status</div><div style="margin-top:8px; font-size:19px; font-weight:600; font-variant-numeric:tabular-nums">Complete</div></div>
         </div>
         <p style="margin:34px 0 0; font-size:17px; line-height:1.65; color:#C9C4BC; max-width:56ch; text-wrap:pretty">Two bays built into a working school facility: black enclosures, spectator sightlines, and turf rated for daily traffic. Practice space that holds up to a full roster all winter.</p>
-        <a href="projects.html" style="display:inline-block; margin-top:28px; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase">See all projects →</a>
+        <a data-tap="text" href="projects.html" style="display:inline-block; margin-top:28px; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase">See all projects →</a>
       </div>
     </div>
   </section>
@@ -368,7 +385,7 @@
       <h2 style="margin:22px 0 0; font-size:clamp(28px,3.9vw,52px); line-height:1.03; font-weight:800; letter-spacing:-.025em; max-width:24ch">Built by a golfer.</h2>
       <p style="margin:20px 0 0; font-size:17px; line-height:1.65; color:#C9C4BC; max-width:54ch; text-wrap:pretty">A lifelong competitive golfer who coaches junior players and runs a simulator league out of his own house in the winter.</p>
       <p style="margin:20px 0 0; font-size:17px; line-height:1.65; color:#F2EDE4; max-width:54ch; text-wrap:pretty">Most people who install simulators learned golf second. Randy learned construction second. That is the whole difference, and you can see it in every room he builds.</p>
-      <a href="about.html" style="display:inline-block; margin-top:30px; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase">More about Randy →</a>
+      <a data-tap="text" href="about.html" style="display:inline-block; margin-top:30px; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase">More about Randy →</a>
     </div>
     <img src="assets/golfer_midswing.jpg" alt="Golfer mid-swing in front of a pro-grade impact screen" width="1536" height="2048" loading="lazy" decoding="async" style="min-height:clamp(300px,42vw,600px); width:100%; height:100%; display:block; object-fit:cover; object-position:center">
   </section>
@@ -390,7 +407,7 @@
         <p style="margin:24px 0 0; font-size:17px; line-height:1.65; color:#C9C4BC; max-width:52ch; text-wrap:pretty">Message us anytime for a free quote or consultation. No pressure, no obligation, and an honest answer about whether your space will work.</p>
       </div>
       <div style="display:flex; flex-direction:column; gap:16px; align-items:flex-start">
-        <a href="tel:+19897141364" style="font-size:clamp(24px,3vw,38px); font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; color:#F2EDE4" style-hover="color:#E6C878">(989) 714-1364</a>
+        <a data-tap="phone" href="tel:+19897141364" style="font-size:clamp(24px,3vw,38px); font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; color:#F2EDE4" style-hover="color:#E6C878">(989) 714-1364</a>
         <a href="contact.html" style="padding:17px 32px; background:#C9A227; color:#040404; font-size:13px; font-weight:700; letter-spacing:.16em; text-transform:uppercase" style-hover="background:#E6C878; color:#040404">Get a free quote</a>
       </div>
     </div>
@@ -414,6 +431,7 @@
         <summary style="display:flex; align-items:center; justify-content:space-between; gap:12px; list-style:none; cursor:pointer; font-size:10px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32">Company<span data-fchev="" style="display:none; font-size:8px; line-height:1; color:#8A6A32; transition:transform .2s ease">&#9660;</span></summary>
         <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px; margin-bottom:22px; font-size:15px">
           <a href="projects.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Projects</a>
+          <a href="shop.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Shop</a>
           <a href="about.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">About Randy</a>
           <a href="process-faq.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Process &amp; FAQ</a>
           <a href="https://www.facebook.com/p/Custom-Sims-LLC-61578348137090/" target="_blank" rel="noreferrer" style="color:#9CA0A6" style-hover="color:#F2EDE4">Facebook</a>

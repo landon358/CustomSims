@@ -75,6 +75,21 @@
   }
   @media (max-width: 460px) { [data-nav-phone] { display: none !important; } }
   @media (min-width: 761px) { [data-fcol] > summary { cursor: default; } }
+
+  /* Touch targets. Small text links get a larger tap area via an invisible
+     pseudo-element, so nothing on the page moves. Sized so neighbouring
+     targets never overlap (e.g. contact phone/email sit 18px apart).
+     Targeted with data-tap, not style-string selectors: the page renderer
+     rewrites inline styles ("font-size: 12px"), which breaks [style*=...]. */
+  [data-tap] { position: relative; }
+  [data-tap="text"]::after { content: ""; position: absolute; inset: -15px -6px; }
+  [data-tap="phone"]::after { content: ""; position: absolute; inset: -9px -6px -8px; }
+  [data-tap="email"]::after { content: ""; position: absolute; inset: -8px -6px -13px; }
+  @media (max-width: 760px) {
+    [data-cta] { min-height: 44px; display: inline-flex !important; align-items: center; }
+    [data-fcol] > div { gap: 0 !important; }
+    [data-fcol] > div > a { padding: 14px 0; }
+  }
 </style>
 <script>
 (function () {
@@ -142,6 +157,7 @@
         </span>
       </span>
       <a href="projects.html" style="color:#E6C878" style-hover="color:#F2EDE4">Projects</a>
+      <a href="shop.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Shop</a>
       <a href="about.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">About</a>
       <a href="process-faq.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">FAQ</a>
       </span>
@@ -161,6 +177,7 @@
             <a href="institutional.html" style="padding:14px 20px 14px 32px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Institutional</a>
             <a href="putting-greens.html" style="padding:14px 20px 14px 32px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Putting Greens</a>
             <a href="projects.html" style="padding:16px 20px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Projects</a>
+            <a href="shop.html" style="padding:16px 20px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Shop</a>
             <a href="about.html" style="padding:16px 20px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">About</a>
             <a href="process-faq.html" style="padding:16px 20px; color:#9CA0A6; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="color:#F2EDE4; background:#141414">Process &amp; FAQ</a>
           <a href="tel:+19897141364" style="padding:16px 20px; color:#F2EDE4; font-size:13px; letter-spacing:.1em; font-variant-numeric:tabular-nums; border-bottom:1px solid rgba(242,237,228,.08)" style-hover="background:#141414">(989) 714-1364</a>
@@ -262,7 +279,7 @@
         <p style="margin:24px 0 0; font-size:17px; line-height:1.65; color:#C9C4BC; max-width:52ch; text-wrap:pretty">Send a photo and a ceiling measurement and we will tell you what it can become.</p>
       </div>
       <div style="display:flex; flex-direction:column; gap:16px; align-items:flex-start">
-        <a href="tel:+19897141364" style="font-size:clamp(24px,3vw,38px); font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; color:#F2EDE4" style-hover="color:#E6C878">(989) 714-1364</a>
+        <a data-tap="phone" href="tel:+19897141364" style="font-size:clamp(24px,3vw,38px); font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; color:#F2EDE4" style-hover="color:#E6C878">(989) 714-1364</a>
         <a href="contact.html" style="padding:17px 32px; background:#C9A227; color:#040404; font-size:13px; font-weight:700; letter-spacing:.16em; text-transform:uppercase" style-hover="background:#E6C878; color:#040404">Get a free quote</a>
       </div>
     </div>
@@ -286,6 +303,7 @@
         <summary style="display:flex; align-items:center; justify-content:space-between; gap:12px; list-style:none; cursor:pointer; font-size:10px; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:#8A6A32">Company<span data-fchev="" style="display:none; font-size:8px; line-height:1; color:#8A6A32; transition:transform .2s ease">&#9660;</span></summary>
         <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px; margin-bottom:22px; font-size:15px">
           <a href="projects.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Projects</a>
+          <a href="shop.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Shop</a>
           <a href="about.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">About Randy</a>
           <a href="process-faq.html" style="color:#9CA0A6" style-hover="color:#F2EDE4">Process &amp; FAQ</a>
           <a href="https://www.facebook.com/p/Custom-Sims-LLC-61578348137090/" target="_blank" rel="noreferrer" style="color:#9CA0A6" style-hover="color:#F2EDE4">Facebook</a>
