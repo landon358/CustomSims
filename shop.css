@@ -66,10 +66,12 @@
 .cs-sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 
 /* ---- Shared links & tweaks ---- */
-.cs-card__title a { color:inherit; text-decoration:none; }
+/* display:block — a wrapped inline link only responds on its text, so tapping the
+   empty end of the first line of a two-line title did nothing on phones. */
+.cs-card__title a { display:block; color:inherit; text-decoration:none; }
 .cs-card__title a:hover { color:#E6C878; }
 .cs-card__media { display:block; }
-.cs-line__title { color:#F2EDE4; text-decoration:none; }
+.cs-line__title { display:block; color:#F2EDE4; text-decoration:none; }
 .cs-line__title:hover { color:#E6C878; }
 .cs-skel--stage { aspect-ratio:1/1; }
 .cs-skel--line { height:14px; width:40%; aspect-ratio:auto; margin-bottom:14px; }
